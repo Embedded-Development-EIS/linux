@@ -4,7 +4,7 @@
 	#address-cells = <0x1>;
 	#size-cells = <0x1>;
 	compatible = "xlnx,zynq-7000";
-	model = "Topic Zynq Miami";
+	model = "Zynq Miami-CCC";
 	interrupt-parent = <0x1>;
 
 	chosen {
@@ -571,12 +571,12 @@
 
 		uartlite_0@42c00000 {
 			status = "disabled";
-            compatible = "xlnx,xps-uartlite-1.00.a", "xlnx,opb-uartlite-1.00.b", "xlnx,axi-uartlite-1.02.a";
-            reg = <0x42c00000 0x10000>;
-            interrupt-parent = <&gic>;
-            interrupts = <0 59 4>;
-            clock = <100000000>;
-        };
+            		compatible = "xlnx,xps-uartlite-1.00.a", "xlnx,opb-uartlite-1.00.b", "xlnx,axi-uartlite-1.02.a";
+            		reg = <0x42c00000 0x10000>;
+            		interrupt-parent = <&gic>;
+            		interrupts = <0 59 4>;
+            		clock = <100000000>;
+       		};
 
 
 		adc {
