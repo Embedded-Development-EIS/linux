@@ -9,7 +9,7 @@
 
 	chosen {
 
-		bootargs = "console=ttyPS0,115200 root=/dev/mtdblock5 ro rootfstype=squashfs rootwait quiet";
+		bootargs = "console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootfstype=ext4 rootwait quiet";
 		linux,stdout-path = "/amba@0/uart@e0000000";
 	};
 
@@ -18,7 +18,6 @@
 		serial1 = "/amba/serial@e0001000";
 		ethernet0 = "/amba/eth@e000b000";
 		mmc0 = "/amba/sdhci@e0100000";
-		ulrs0 = "/amba/uartlite_0@42c00000";
 	};
 
 	memory {
@@ -555,55 +554,37 @@
 			gmii2rgmii-phy-handle = <0xc>;
 
 			phy@0 {
-					reg = <0x0>;
-					max-speed = <100>;
-					interrupt-parent = <0x0>;
-					interrupts = <0x41 0x8>;
-					rxc-skew-ps = <0x438>;
-					txc-skew-ps = <0x348>;
-					linux,phandle = <0xb>;
-					phandle = <0xb>;
-				  };
+				reg = <0x0>;
+				max-speed = <100>;
+				interrupt-parent = <0x0>;
+				interrupts = <0x41 0x8>;
+				rxc-skew-ps = <0x438>;
+				txc-skew-ps = <0x348>;
+				linux,phandle = <0xb>;
+				phandle = <0xb>;
+			};
 
 			phy@8 {
-					reg = <0x8>;
-					max-speed = <100>;
-					linux,phandle = <0xc>;
-				  };
-
+				reg = <0x8>;
+				max-speed = <100>;
+				linux,phandle = <0xc>;
+			};
 		};
-
-		uartlite_0@42c00000 {
-			status = "disabled";
-            		compatible = "xlnx,xps-uartlite-1.00.a", "xlnx,opb-uartlite-1.00.b", "xlnx,axi-uartlite-1.02.a";
-            		reg = <0x42c00000 0x10000>;
-            		interrupt-parent = <&gic>;
-            		interrupts = <0 59 4>;
-            		clock = <100000000>;
-       		};
-
 
 		adc {
 			compatible = "ccc-adc-1.00.a";
 			reg = <0x43c00000 0x10000>;
 		};
 
-		controller {
-			compatible = "ccc-controller-1.00.a";
+		gpio {
+			compatible = "ccc-gpio_mod-1.00.a";
 			reg = <0x41200000 0x10000>;
 		};
 
-		pwm_0 {
+		pwm0 {
 			compatible = "ccc-pwm_0-1.00.a";
 			reg = <0x42800000 0x10000>;
 		};
-
-		pwm_1 {
-			compatible = "ccc-pwm_1-1.00.a";
-			reg = <0x42810000 0x10000>;
-		};
-
-		
 
 	};
 
@@ -628,8 +609,6 @@
 		};
 	};
 
-	
-	
 
 	gpios-i2c@52 {
 		bus-id = <0x1>;
