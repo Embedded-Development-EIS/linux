@@ -225,7 +225,7 @@ static void cdns_uart_handle_rx(void *dev_id, unsigned int isrstatus)
 		CDNS_UART_SR_RXEMPTY) != CDNS_UART_SR_RXEMPTY) {
 		if (is_rxbs_support)
 			rxbs_status = readl(port->membase + CDNS_UART_RXBS);
-		data = readl(port->membase + CDNS_UART_FIFO);
+		data = (unsigned char) readl(port->membase + CDNS_UART_FIFO);
 		port->icount.rx++;
 		/*
 		 * There is no hardware break detection in Zynq, so we interpret
@@ -290,7 +290,7 @@ static void cdns_uart_handle_rx(void *dev_id, unsigned int isrstatus)
 			tty_insert_flip_char(&port->state->port, 0,
 					     TTY_OVERRUN);
 		}
-		tty_insert_flip_char(&port->state->port, data, status);
+		tty_insert_flip_char(&port->state->port, (unsigned char) data, status);
 		isrstatus = 0;
 	}
 	spin_unlock(&port->lock);
